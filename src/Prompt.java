@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
 /**
- * Input class used to prompt user for various types of values.
+ * Prompt class used to prompt user for various types of values.
  * Overloaded methods to accept min and max parameters.
  * @author Josh Carpenter
  */
-public class Input {
+public class Prompt {
 
-    private Input(){}
+    private Prompt(){}
 
     /**
      * Prompts user for an integer and does not accept strings or special
