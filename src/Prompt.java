@@ -9,7 +9,7 @@ public class Prompt {
 
     private Prompt(){}
 
-    private static String invalidMsg = "Invalid Entry!  Please try again...";
+    private static String invalidMsg = "Invalid entry!  Please try again...";
 
     /**
      * Prompts the user for the desired level of difficulty and will ONLY accept an int value between 1 and 3
@@ -54,10 +54,26 @@ public class Prompt {
      * @return a int[] where the value at index 0 is the row and the value at index 1 is the column
      */
     public static int[] makeSelection() {
+        boolean invalid;
+        String entry, delim = ",", prompt = "Enter the location of the tile: ";
         int[] location = new int[2];
-
-        //TODO Implement prompt and validation of selection entry
-
+        do {
+            invalid = false;
+            entry = getUserString(prompt);
+            if (!entry.contains(delim)) {
+                System.out.println(invalidMsg);
+                invalid = true;
+            } else {
+                String[] parts = entry.split(delim);
+                try {
+                    location[0] = Integer.parseInt(parts[0].replaceAll("\\s", ""));
+                    location[1] = Integer.parseInt(parts[1].replaceAll("\\s", ""));
+                } catch (NumberFormatException e) {
+                    System.out.println(invalidMsg);
+                    invalid = true;
+                }
+            }
+        } while (invalid);
         return location;
     }
 
