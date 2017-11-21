@@ -38,9 +38,9 @@ public class Grid {
 			do{
 				rws = random.nextInt(rows);//random row index for the mine
 				cols = random.nextInt(columns);//random column index for mine
-				isMine(grid[rws][cols]);//set mine
+				grid[rws][cols].setMine(true);;//set mine
 				
-				if(rws == -1 && cols == -1){
+				if(rws == -1){// need to fix
 					shuffled =true;
 				}					
 				else
@@ -51,37 +51,56 @@ public class Grid {
 	
 	/**Method for verifying if the tile is a mine**/
 	public boolean isMine(tile Tile){
-		
-		return true;
+		if(Tile.hasMine() == false){
+			return false;	
+		}else
+			return true;
 		
 	}//End isMine
 	
 	/**Method for verifying if the tile is selected**/
 	public boolean isSelected(tile Tile){
-		return false;
+		if(Tile.isSelected() == false){
+			return false;
+		}else
+			return true;
 		
 	}//End isSelected
 	
 	/**Method for returning the tile**/
-	public tile getTile(int [] location){
+	public tile getTile(int [] location){// delete comment when method is finished
 		return null;
 		
 	}//End getTile
 	
 	/**Method for marking tile**/
 	public void markTile(tile Tile){
+		Tile.setMarked(true);
 		
 	}//End markTile
 	
 	/**Method for selecting the tile**/
 	public void selectTile(tile Tile){
-		
+		if(Tile.isSelected() == true){//verify tile selection
+			if(Tile.hasMine() == true){//game over selection
+				System.out.println("Gameover, Minesweeper.printGrid()");//temporary modify when done
+			}
+		}else
+			if(Tile.isSelected() == true){//verify tile selection
+				nearByMines(Tile);//uncover the number of mines around location
+			}
 	}//End selectTile
 	
 	/**Method for uncovering the mines**/
 	public int nearByMines(tile Tile){
-		return 0;
-		
+		int count = 0;
+		int location;
+		for(int i =0; i < rows; i++){
+			for(int j = 0; j < columns; j++){
+				
+			}
+		}		
+		return count;		
 	}//End nearByMines
 	
 }//End class
