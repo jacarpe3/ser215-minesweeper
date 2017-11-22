@@ -6,11 +6,15 @@
 public class Tile {
 
     private boolean hasMine, isMarked, isSelected;
+    private int[] location;
+    private int nearbyMines;
 
-    public Tile() {
+    public Tile(int[] location) {
         this.hasMine = false;
         this.isMarked = false;
         this.isSelected = false;
+        this.location = location;
+        this.nearbyMines = 0;
     }
 
     /**
@@ -35,6 +39,20 @@ public class Tile {
     }
 
     /**
+     * @return The location array of the tile that specifies the row/column
+     */
+    public int[] getLocation() {
+        return location;
+    }
+
+    /**
+     * @return The number of mines touching this tile
+     */
+    public int getNearbyMines() {
+        return nearbyMines;
+    }
+
+    /**
      * sets the isMarked variable
      */
     public void setMarked(boolean marked) {
@@ -53,5 +71,19 @@ public class Tile {
      */
     public void setMine(boolean mine) {
         this.hasMine = mine;
+    }
+
+    /**
+     * sets the location of the tile
+     */
+    public void setLocation(int[] location) {
+        this.location = location;
+    }
+
+    /**
+     * sets the number of nearby mines
+     */
+    public void setNearbyMines(int nearbyMines) {
+        this.nearbyMines = nearbyMines;
     }
 }
