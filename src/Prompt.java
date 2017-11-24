@@ -56,7 +56,7 @@ public class Prompt {
      * Prompts the user to enter the tile they wish to select (or mark)
      * @return a int[] where the value at index 0 is the row and the value at index 1 is the column
      */
-    public static int[] makeSelection() {
+    public static int[] makeSelection(int maxRows, int maxColumns) {
         boolean invalid;
         String entry, delim = ",", prompt = "\tEnter the location of the tile (row, column): ";
         int[] location = new int[2];
@@ -71,6 +71,10 @@ public class Prompt {
                 try {
                     location[0] = Integer.parseInt(parts[0].replaceAll("\\s", "")) - 1;
                     location[1] = Integer.parseInt(parts[1].replaceAll("\\s", "")) - 1;
+                    if (location[0] >= maxRows || location[1] >= maxColumns) {
+                        System.out.println(invalidMsg);
+                        invalid = true;
+                    }
                 } catch (NumberFormatException e) {
                     System.out.println(invalidMsg);
                     invalid = true;

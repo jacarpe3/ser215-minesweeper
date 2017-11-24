@@ -55,7 +55,7 @@ public class Minesweeper {
                 boolean invalid;
                 do {
                     invalid = false;
-                    selectedTile = grid.getTile(Prompt.makeSelection());
+                    selectedTile = grid.getTile(Prompt.makeSelection(grid.getRows(), grid.getColumns()));
                     if (selectedTile.isSelected()) {
                         System.out.println("That tile has already been selected! Please try again...");
                         invalid = true;
@@ -81,7 +81,7 @@ public class Minesweeper {
                 boolean invalid;
                 do {
                     invalid = false;
-                    selectedTile = grid.getTile(Prompt.makeSelection());
+                    selectedTile = grid.getTile(Prompt.makeSelection(grid.getRows(), grid.getColumns()));
                     if (selectedTile.isMarked()) {
                         System.out.println("That tile is marked! Please try again...");
                         invalid = true;
