@@ -9,14 +9,14 @@ public class Prompt {
 
     private Prompt(){}
 
-    private static String invalidMsg = "Invalid entry!  Please try again...";
+    private static String invalidMsg = "\tInvalid entry!  Please try again...";
 
     /**
      * Prompts the user for the desired level of difficulty and will ONLY accept an int value between 1 and 3
      * @return int value representing the desired level of difficulty
      */
     public static int getDifficulty() {
-        return getUserInt("Enter the desired level of difficulty: ", invalidMsg, 1, 3);
+        return getUserInt("\tEnter the desired level of difficulty: ", invalidMsg, 1, 3);
     }
 
     /**
@@ -24,7 +24,10 @@ public class Prompt {
      * @return int value representing the desired level of difficulty
      */
     public static int selectAction() {
-        return getUserInt("Select an action: ", invalidMsg, 1, 2);
+        System.out.println("\t1 - Mark/unmark a tile...");
+        System.out.println("\t2 - Select a tile...");
+        System.out.println("\t3 - Quit Game\n");
+        return getUserInt("\tSelect an action: ", invalidMsg, 1, 3);
     }
 
     /**
@@ -36,7 +39,7 @@ public class Prompt {
         String entry;
         do {
             invalid = false;
-            entry = getUserString("Would you like to play again? (Y or N): ");
+            entry = getUserString("\tWould you like to play again? (Y or N): ");
             if (entry.equalsIgnoreCase("Y")) {
                 playAgain = true;
             } else if (entry.equalsIgnoreCase("N")) {
@@ -55,7 +58,7 @@ public class Prompt {
      */
     public static int[] makeSelection() {
         boolean invalid;
-        String entry, delim = ",", prompt = "Enter the location of the tile: ";
+        String entry, delim = ",", prompt = "\tEnter the location of the tile (row, column): ";
         int[] location = new int[2];
         do {
             invalid = false;
@@ -66,8 +69,8 @@ public class Prompt {
             } else {
                 String[] parts = entry.split(delim);
                 try {
-                    location[0] = Integer.parseInt(parts[0].replaceAll("\\s", ""));
-                    location[1] = Integer.parseInt(parts[1].replaceAll("\\s", ""));
+                    location[0] = Integer.parseInt(parts[0].replaceAll("\\s", "")) - 1;
+                    location[1] = Integer.parseInt(parts[1].replaceAll("\\s", "")) - 1;
                 } catch (NumberFormatException e) {
                     System.out.println(invalidMsg);
                     invalid = true;
