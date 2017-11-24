@@ -19,8 +19,8 @@ public class Grid {
 
         switch(difficulty) {
             case 1: this.rows = 9; this.columns = 9; this.mineCount = 10; break;
-            case 2: this.rows = 16; this.columns = 16; this.mineCount = 20; break;
-            case 3: this.rows = 16; this.columns = 30; this.mineCount = 30; break;
+            case 2: this.rows = 16; this.columns = 16; this.mineCount = 40; break;
+            case 3: this.rows = 20; this.columns = 24; this.mineCount = 100; break;
         }
         grid = new Tile[rows][columns];
 
@@ -50,29 +50,24 @@ public class Grid {
         } while (count < mineCount);
     }
 
-    /**Method for verifying if the tile is a mine**/
-    public boolean isMine(Tile tile) {
-        return tile.hasMine();
-    }
-
-    /**Method for verifying if the tile is selected**/
-    public boolean isSelected(Tile tile){
-        return tile.isSelected();
-    }
-
     /**Method for returning the tile**/
     public Tile getTile(int[] location){
         return this.grid[location[0]][location[1]];
     }
 
-    /**Method for marking tile**/
-    public void markTile(Tile tile){
-        tile.setMarked(true);
+    /**Method for getting the number of mines**/
+    public int getMineCount() {
+        return this.mineCount;
     }
 
-    /**Method for selecting the tile**/
-    public void selectTile(Tile tile) {
-        tile.setSelected(true);
+    /**Method for getting number of rows**/
+    public int getRows() {
+        return this.rows;
+    }
+
+    /**Method for getting number of columns**/
+    public int getColumns() {
+        return this.columns;
     }
 
     /**Method for displaying the number of mines touching the current tile**/
