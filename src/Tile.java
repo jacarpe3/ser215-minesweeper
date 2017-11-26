@@ -74,13 +74,6 @@ public class Tile {
     }
 
     /**
-     * sets the location of the tile
-     */
-    public void setLocation(int[] location) {
-        this.location = location;
-    }
-
-    /**
      * sets the number of nearby mines
      */
     public void setNearbyMines(int nearbyMines) {
